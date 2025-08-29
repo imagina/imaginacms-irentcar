@@ -1,28 +1,29 @@
 {
-    "name": "imagina/irentcar",
-    "description": "",
-    "authors": [
-        {
-            "name": "Imagina Colombia",
-            "email": "soporte@imaginacolombia.com"
-        }
-    ],
-    "extra": {
-        "laravel": {
-            "providers": [],
-            "aliases": {}
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "Modules\\Irentcar\\": "app/",
-            "Modules\\Irentcar\\Database\\Factories\\": "database/factories/",
-            "Modules\\Irentcar\\Database\\Seeders\\": "database/Seeders/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Modules\\Irentcar\\Tests\\": "tests/"
-        }
+  "name": "imagina/irentcar-module",
+  "description": "Imagina irentcar laravel module",
+  "type": "laravel-module",
+  "authors": [
+    {
+      "name": "Imagina Colombia",
+      "email": "soporte@imaginacolombia.com"
     }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [],
+      "aliases": {}
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Modules\\Irentcar\\": "app/",
+      "Modules\\Irentcar\\Database\\Factories\\": "database/factories/",
+      "Modules\\Irentcar\\Database\\Seeders\\": "database/Seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Modules\\Irentcar\\Tests\\": "tests/"
+    }
+  }
 }
