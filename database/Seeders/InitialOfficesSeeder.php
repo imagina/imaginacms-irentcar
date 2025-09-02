@@ -57,7 +57,7 @@ class InitialOfficesSeeder extends Seeder
           'data' => ['locatable' => $locatable],
           'model' => $office
         ];
-        event(new \Modules\Ilocations\Events\CreateLocation($params));
+        event(new \Modules\Ilocation\Events\CreateLocation($params));
       }
     }
   }

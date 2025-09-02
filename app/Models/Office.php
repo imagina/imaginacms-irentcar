@@ -18,11 +18,11 @@ class Office extends CoreModel
     ];
     //Instance external/internal events to dispatch with extraData
     public array $dispatchesEventsWithBindings = [
-        'created' => [['path' => 'Modules\Ilocations\Events\CreateLocation']],
+        'created' => [['path' => 'Modules\Ilocation\Events\CreateLocation']],
         'creating' => [],
-        'updated' => [['path' => 'Modules\Ilocations\Events\UpdateLocation']],
+        'updated' => [['path' => 'Modules\Ilocation\Events\UpdateLocation']],
         'updating' => [],
-        'deleting' => [['path' => 'Modules\Ilocations\Events\DeleteLocation']],
+        'deleting' => [['path' => 'Modules\Ilocation\Events\DeleteLocation']],
         'deleted' => []
     ];
     public array $translatedAttributes = [];
@@ -57,8 +57,8 @@ class Office extends CoreModel
      */
     public function locations()
     {
-        if (isModuleEnabled('Ilocations')) {
-            return app(\Modules\Ilocations\Relations\LocationsRelation::class)->resolve($this);
+        if (isModuleEnabled('Ilocation')) {
+            return app(\Modules\Ilocation\Relations\LocationsRelation::class)->resolve($this);
         }
         return new \Imagina\Icore\Relations\EmptyRelation();
     }
