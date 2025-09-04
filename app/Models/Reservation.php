@@ -49,7 +49,7 @@ class Reservation extends CoreModel
         'gamma_office_price',
         'gamma_office_extra_total_price',
         'total_price',
-        'status',
+        'status_id',
         'options'
     ];
 
@@ -63,7 +63,7 @@ class Reservation extends CoreModel
     }
 
     protected $appends = [
-        'status_title',
+        'status',
         'total_price_usd'
     ];
 
@@ -87,11 +87,11 @@ class Reservation extends CoreModel
         return $this->belongsTo(Gamma::class, 'gamma_id');
     }
 
-    public function statusTitle(): Attribute
+    public function status(): Attribute
     {
         return Attribute::get(function () {
             $status = new ReservationStatus();
-            return $status->get($this->status);
+            return $status->show($this->status_id);
         });
     }
 

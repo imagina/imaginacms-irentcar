@@ -43,7 +43,7 @@ return new class extends Migration
             $table->decimal('gamma_office_extra_total_price', 15, 2)->default(0);
             $table->decimal('total_price', 15, 2)->default(0);
 
-            $table->tinyInteger('status')->default(1)->unsigned();
+            $table->tinyInteger('status_id')->default(1)->unsigned();
 
             $table->json('options')->nullable();
 
