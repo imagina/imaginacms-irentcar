@@ -15,7 +15,7 @@
 
 <p style="margin: 0; color: #000;">{{ $reservation->gamma->title }}</p>
 <p style="margin: 0; color: #000;">{{ $reservation->gamma->passengers_number }} Pasajeros</p>
-<p style="margin: 0; color: #000;">{{ $reservation->gamma->luggages }} maletas</p>
+<p style="margin: 0; color: #000;">{{ $reservation->gamma->luggage }} maletas</p>
 
 
 @if(!empty($filesByZone) && isset($filesByZone->mainimage))

@@ -17,13 +17,13 @@ class CreateGammaRequest extends CoreFormRequest
             'title' => 'required|min:3|max:255',
             'description' => 'required|min:5|max:3000',
             'passengers_number' => 'required|integer|min:1',
-            'luggages' => 'required|integer|min:0',
+            'luggage' => 'required|integer|min:0',
             'doors' => 'required|integer|min:1',
             'next_gamma_id' => 'nullable|integer|exists:irentcar__gammas,id',
             'options' => 'nullable|json',
-            'transmission_type' => 'nullable|integer|in:' . implode(',', array_keys((new TransmissionType())->lists())),
-            'fuel_type' => 'nullable|integer|in:' . implode(',', array_keys((new FuelType())->lists())),
-            'vehicle_type' => 'nullable|integer|in:' . implode(',', array_keys((new VehicleType())->lists())),
+            'transmission_type_id' => 'nullable|integer|in:' . implode(',', array_keys((new TransmissionType())->lists())),
+            'fuel_type_id' => 'nullable|integer|in:' . implode(',', array_keys((new FuelType())->lists())),
+            'vehicle_type_id' => 'nullable|integer|in:' . implode(',', array_keys((new VehicleType())->lists())),
         ];
     }
 
@@ -46,12 +46,12 @@ class CreateGammaRequest extends CoreFormRequest
             'description.min' => itrans('irentcar::common.messages.descriptionMin'),
             'passengers_number.required' => itrans('irentcar::gamma.messages.passengersNumberIsRequired'),
             'passengers_number.min' => itrans('irentcar::gamma.messages.passengersNumberMin'),
-            'luggages.required' => itrans('irentcar::gamma.messages.luggagesIsRequired'),
+            'luggage.required' => itrans('irentcar::gamma.messages.luggageIsRequired'),
             'doors.required' => itrans('irentcar::gamma.messages.doorsIsRequired'),
             'doors.min' => itrans('irentcar::gamma.messages.doorsMin'),
-            'transmission_type.in' => itrans('irentcar::gamma.messages.transmissionTypeIn'),
-            'fuel_type.in' => itrans('irentcar::gamma.messages.fuelTypeIn'),
-            'vehicle_type.in' => itrans('irentcar::gamma.messages.vehicleTypeIn'),
+            'transmission_type_id.in' => itrans('irentcar::gamma.messages.transmissionTypeIn'),
+            'fuel_type_id.in' => itrans('irentcar::gamma.messages.fuelTypeIn'),
+            'vehicle_type_id.in' => itrans('irentcar::gamma.messages.vehicleTypeIn'),
             'next_gamma_id.exists' => itrans('irentcar::gamma.messages.nextGamaExist'),
         ];
     }

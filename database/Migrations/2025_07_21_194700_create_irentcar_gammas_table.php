@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('title');
             $table->text('summary')->nullable();
             $table->text('description');
-            $table->tinyInteger('transmission_type')->default(0)->unsigned();
+            $table->tinyInteger('transmission_type_id')->default(0)->unsigned();
             $table->integer('passengers_number')->unsigned();
-            $table->integer('luggages')->unsigned();
+            $table->integer('luggage')->unsigned();
             $table->integer('doors')->unsigned();
-            $table->tinyInteger('fuel_type')->default(0)->unsigned();
-            $table->tinyInteger('vehicle_type')->default(0)->unsigned();
+            $table->tinyInteger('fuel_type_id')->default(0)->unsigned();
+            $table->tinyInteger('vehicle_type_id')->default(0)->unsigned();
 
             $table->integer('next_gamma_id')->unsigned()->nullable();
             $table->foreign('next_gamma_id')->references('id')->on('irentcar__gammas')->onDelete('restrict');

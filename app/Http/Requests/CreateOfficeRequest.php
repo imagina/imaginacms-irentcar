@@ -14,7 +14,7 @@ class CreateOfficeRequest extends CoreFormRequest
         return [
             'title' => 'required|min:3|max:255',
             'description' => 'nullable|min:5|max:3000',
-            'status' => 'nullable|integer|in:' . implode(',', array_keys((new Status())->lists())),
+            'status_id' => 'nullable|integer|in:' . implode(',', array_keys((new Status())->lists())),
             'locatable.country_id' => 'required',
             'locatable.province_id' => 'required',
             'locatable.city_id' => 'required',
@@ -40,7 +40,7 @@ class CreateOfficeRequest extends CoreFormRequest
             'title.required' => itrans('irentcar::common.messages.titleIsRequired'),
             'title.min' => itrans('irentcar::common.messages.titleMin'),
             'description.min' => itrans('irentcar::common.messages.descriptionMin'),
-            'status.in' => itrans('irentcar::common.messages.statusIn'),
+            'status_id.in' => itrans('irentcar::common.messages.statusIn'),
             'locatable.country_id.required' => itrans('irentcar::office.messages.locatable.countryIdIsRequired'),
             'locatable.province_id.required' => itrans('irentcar::office.messages.locatable.provinceIdIsRequired'),
             'locatable.city_id.required' => itrans('irentcar::office.messages.locatable.cityIdIsRequired'),

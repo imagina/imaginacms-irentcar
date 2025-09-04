@@ -12,15 +12,12 @@ class InitialOfficesSeeder extends Seeder
    */
   public function run(): void
   {
-
     if (Office::count() === 0) {
-
-      $repository = app('Modules\Irentcar\Repositories\OfficeRepository');
       $offices = [
         [
           'title' => 'Oficina de Prueba 1',
           'description' => 'Esta es la descripcion de la oficina 1',
-          'status' => 1,
+          'status_id' => 1,
           'locatable' => [
             'country_id' => 48,
             'province_id' => 721,
@@ -33,7 +30,7 @@ class InitialOfficesSeeder extends Seeder
         [
           'title' => 'Oficina de Prueba 2',
           'description' => 'Esta es la descripcion de la oficina 2',
-          'status' => 1,
+          'status_id' => 1,
           'locatable' => [
             'country_id' => 48,
             'province_id' => 721,
@@ -46,6 +43,7 @@ class InitialOfficesSeeder extends Seeder
       ];
 
       //Create offices
+      $repository = app('Modules\Irentcar\Repositories\OfficeRepository');
       foreach ($offices as $data) {
         $locatable = $data['locatable'];
         unset($data['locatable']);

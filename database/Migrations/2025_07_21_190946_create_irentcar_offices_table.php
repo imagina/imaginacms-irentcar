@@ -18,7 +18,7 @@ return new class extends Migration
             // Your fields...
             $table->string('title');
             $table->text('description')->nullable();
-            $table->tinyInteger('status')->default(1)->unsigned();
+            $table->tinyInteger('status_id')->default(1)->unsigned();
 
             // Audit fields
             $table->timestamps();
