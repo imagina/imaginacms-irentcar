@@ -1,7 +1,8 @@
 <h3 style="font-size: 14px; margin-top: 20px; color: #000000;">A pagar a la llegada</h3>
 <p style="margin: 0; color: #000;">Tarifa básica <span style="color: #28a745;">${{ $reservation->gamma_office_price }}
         COP</span></p>
-<p style="margin: 0; color: #555;">Impuesto sobre las ventas ({{ $reservation->tax_rate }}%) (Incluido)</p>
+<p style="margin: 0; color: #555;">Impuesto sobre las ventas ({{ $reservation->gamma_office_tax }}%) (Ya Incluido en la
+    tarifa básica)</p>
 
 <h3 style="font-size: 14px; margin-top: 20px; color: #000000;">Precio total estimado</h3>
 <p style="margin: 0; font-weight: bold; color: #28a745;">

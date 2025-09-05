@@ -47,6 +47,7 @@ class Reservation extends CoreModel
         'gamma_data',
         'extras_data',
         'gamma_office_price',
+        'gamma_office_tax',
         'gamma_office_extra_total_price',
         'total_price',
         'status_id',
@@ -64,7 +65,8 @@ class Reservation extends CoreModel
 
     protected $appends = [
         'status',
-        'total_price_usd'
+        'total_price_usd',
+        'gamma_office_tax_amount'
     ];
 
     public function pickupOffice()
@@ -127,6 +129,24 @@ class Reservation extends CoreModel
                 return round($totalPrice / $copRate, 2);
             }
 
+
+            return 0;
+        });
+    }
+
+    public function gammaOfficeTaxAmount(): Attribute
+    {
+        return Attribute::get(function () {
+
+            $gammaOfficePrice = (float) $this->gamma_office_price;
+            $taxRate = (float) $this->gamma_office_tax;
+
+            if ($taxRate > 0) {
+
+                $taxAmount = ($gammaOfficePrice * $taxRate) / 100;
+
+                return round($taxAmount);
+            }
 
             return 0;
         });

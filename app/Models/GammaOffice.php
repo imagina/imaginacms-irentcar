@@ -4,6 +4,8 @@ namespace Modules\Irentcar\Models;
 
 use Imagina\Icore\Models\CoreModel;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 class GammaOffice extends CoreModel
 {
 
@@ -30,6 +32,12 @@ class GammaOffice extends CoreModel
         'gamma_id',
         'quantity',
         'price',
+        'tax',
+        'status_id'
+    ];
+
+    protected $appends = [
+        'status'
     ];
 
     //TODO - Duda de como funciona esto, si es necesario o no
@@ -39,6 +47,14 @@ class GammaOffice extends CoreModel
             'model' => 'Modules\Irentcar\Models\DailyAvailability'
         ]
     ]; */
+
+    public function status(): Attribute
+    {
+        return Attribute::get(function () {
+            $status = new Status();
+            return $status->show($this->status_id);
+        });
+    }
 
     //TODO Revisar si esto es necesario
     public function dailyAvailabilities()

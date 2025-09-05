@@ -80,6 +80,7 @@ class ReservationService
 
     /**
      * Get price from gammaOffice and priority in DailyAvailability
+     * Get Tax from gamma Office
      */
     private function getPriceFromGammaOffice(&$data)
     {
@@ -103,6 +104,9 @@ class ReservationService
             //Get Base price
             $data['gamma_office_price'] = $this->gammaOffice->price;
         }
+
+        //Get Tax
+        $data['gamma_office_tax'] = $this->gammaOffice->tax;
     }
 
     /**
