@@ -9,5 +9,6 @@ return [
     'slotRangeStart' => 'Slot Starts',
     'slotRangeEnd' => 'Slot Ends',
     'minDriveAge' => 'Minimum Driver Age',
-    'configurationToGetAvailableGammas' => 'Configuration to Get Available Gammas'
+    'configurationToGetAvailableGammas' => 'Configuration to Get Available Gammas',
+    'userEmailsToNotify' => 'User Emaisl to Notify',
 ];

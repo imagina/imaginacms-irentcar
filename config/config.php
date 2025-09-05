@@ -10,7 +10,10 @@ return [
         "message" => 'El mensaje',
         "content" => "irentcar::emails.reservation.index",
         "extraParams" => [
-            'reservation' => fn() => Modules\Irentcar\Models\Reservation::find(1),
+            'reservation' => [
+                'entity' => 'Modules\Irentcar\Models\Reservation',
+                'param' => 'reservationId',
+            ],
         ],
     ]
 ];

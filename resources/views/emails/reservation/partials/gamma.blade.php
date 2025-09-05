@@ -11,11 +11,12 @@
 
 @endphp
 
-<h3 style="font-size: 14px; margin-top: 20px; color: #000000;">Información del vehículo</h3>
+<h3 style="font-size: 14px; margin-top: 20px; color: #000000;">{{itrans('irentcar::email.car information')}}</h3>
 
 <p style="margin: 0; color: #000;">{{ $reservation->gamma->title }}</p>
-<p style="margin: 0; color: #000;">{{ $reservation->gamma->passengers_number }} Pasajeros</p>
-<p style="margin: 0; color: #000;">{{ $reservation->gamma->luggage }} maletas</p>
+<p style="margin: 0; color: #000;">{{ $reservation->gamma->passengers_number }} {{itrans('irentcar::email.passengers')}}
+</p>
+<p style="margin: 0; color: #000;">{{ $reservation->gamma->luggage }} {{itrans('irentcar::email.luggage')}}</p>
 
 
 @if(!empty($filesByZone) && isset($filesByZone->mainimage))
@@ -23,7 +24,7 @@
 @endif
 
 
-<h3 style="font-size: 14px; margin-top: 20px; color: #000000;">Elementos opcionales</h3>
+<h3 style="font-size: 14px; margin-top: 20px; color: #000000;">{{itrans('irentcar::email.extras')}}</h3>
 @foreach ($reservation->extras_data as $extra)
 
     <p style="margin: 0; color: #000;">{{ $extra['extra']['title'] }}

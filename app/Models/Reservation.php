@@ -160,10 +160,16 @@ class Reservation extends CoreModel
     {
         //Process to get Email (Example: From entity, or settings, etc)
         $email = $this->user->email;
+        $usersEmailsToNotify = setting('irentcar::userEmailsToNotify', null);
+
+        $allEmails = array_merge(
+            is_array($usersEmailsToNotify) ? $usersEmailsToNotify : [],
+            [$email]
+        );
 
         return [
             'created' => [
-                "email" => $email,
+                "email" => $allEmails,
                 "title" =>  itrans("irentcar::reservation.email.created.title"),
                 "content" => "irentcar::emails.reservation.index",
                 "extraParams" => [
