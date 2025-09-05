@@ -85,10 +85,10 @@ class GammaService
         //Get Range from setting configuration
         [$startDate, $endDate] = $this->getDateRange($pickupDate, $dropoffDate);
 
-        //Get gammas to pickup office
+        //Get gammas to pickup office and gamma_office active
         $params = [
             "include" => (array) (empty($paramsFromRequest->include) ? 'gamma' : $paramsFromRequest->include),
-            "filter" => ["office_id" => $pickupOfficeId]
+            "filter" => ["office_id" => $pickupOfficeId, "status_id" => 1]
         ];
         $paramsFromRequest = array_merge((array)$paramsFromRequest, $params);
         $gammasOffice = $this->gammaOfficeRepository->getItemsBy(json_decode(json_encode($paramsFromRequest)));
@@ -175,8 +175,8 @@ class GammaService
 
         $availableGammas = collect($availableGammas);
 
-        $page = $params->page;
-        $perPage = $params->take;
+        $perPage = max(1, (int) ($params->take ?? 12));
+        $page = max(1, (int) ($params->page ?? 1));
 
         $paginator = new LengthAwarePaginator(
             items: $availableGammas->forPage($page, $perPage),
