@@ -97,7 +97,7 @@ class ValidationDateService
 
         return [
             "slots" => $hourSlots,
-            "extraInfor" => [
+            "extraInfo" => [
                 "minAdvanceMinutes" => $minAdvanceMinutes,
                 "slotsIntervalMinutes" => $slotsIntervalMinutes,
                 "slotRangeStart" => $slotRangeStart,

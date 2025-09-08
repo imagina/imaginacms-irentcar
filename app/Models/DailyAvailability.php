@@ -29,7 +29,7 @@ class DailyAvailability extends CoreModel
     protected $fillable = [
         'gamma_office_id',
         'quantity',
-        'date',
+        'available_date',
         'reason',
         'price',
         'reserved_quantity'

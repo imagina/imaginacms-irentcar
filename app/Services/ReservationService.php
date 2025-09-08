@@ -91,7 +91,7 @@ class ReservationService
         //Priority check in dailyAvailability to this specific Date and this gamma_office_id
         $params = [
             'filter' => [
-                'field' => 'date',
+                'field' => 'available_date',
                 'gamma_office_id' => $gammaOfficeId
             ]
         ];
@@ -201,7 +201,7 @@ class ReservationService
 
             //Buscar si ya existe disponibilidad para ese día
             $daily = $gammaOffice->dailyAvailabilities->first(function ($item) use ($dateKey) {
-                return Carbon::parse($item->date)->format('Y-m-d') === $dateKey;
+                return Carbon::parse($item->available_date)->format('Y-m-d') === $dateKey;
             });
 
             if ($daily) {
@@ -213,7 +213,7 @@ class ReservationService
                 $this->dailyAvailabilityRepository->create([
                     'gamma_office_id'    => $gammaOffice->id,
                     'quantity'           => $gammaOffice->quantity,
-                    'date'               => $dateKey,
+                    'available_date'     => $dateKey,
                     'reserved_quantity'  => 1,
                     'reason'             => null,
                     'price'              => null

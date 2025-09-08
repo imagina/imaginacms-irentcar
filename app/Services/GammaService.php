@@ -132,7 +132,7 @@ class GammaService
     private function getGroupedDailyAvailabilities($gammasOffice, $pickupDate, $dropoffDate)
     {
         return DailyAvailability::whereIn('gamma_office_id', $gammasOffice->pluck('id'))
-            ->whereBetween('date', [$pickupDate->toDateString(), $dropoffDate->toDateString()])
+            ->whereBetween('available_date', [$pickupDate->toDateString(), $dropoffDate->toDateString()])
             ->get()
             ->groupBy('gamma_office_id')
             ->map(function ($items) {
