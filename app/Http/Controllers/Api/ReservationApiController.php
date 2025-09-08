@@ -3,6 +3,7 @@
 namespace Modules\Irentcar\Http\Controllers\Api;
 
 use Imagina\Icore\Http\Controllers\CoreApiController;
+
 //Model
 use Modules\Irentcar\Models\Reservation;
 use Modules\Irentcar\Repositories\ReservationRepository;
@@ -37,14 +38,11 @@ class ReservationApiController extends CoreApiController
 
       //Get Parameters from request
       $params = $this->getParamsRequest($request);
-
-      //Get Data
-      $modelData = $request->input('attributes') ?? [];
-
+      $filters = (array)$params->filter;
       //Validate Request
-      $this->validateWithModelRules($modelData, 'validationDate');
+      $this->validateWithModelRules($filters, 'validationDate');
 
-      $result = $validationDateService->init($modelData);
+      $result = $validationDateService->init($filters);
 
       //Response
       $response = ['data' => $result];
@@ -74,7 +72,7 @@ class ReservationApiController extends CoreApiController
       $this->validateWithModelRules($modelData, 'validationGammasToReservation');
 
       //Process to get gammas
-      $gammas =  $gammaService->getGammasToReservations($modelData, $params);
+      $gammas = $gammaService->getGammasToReservations($modelData, $params);
 
       //Response
       $response = ['data' => GammaTransformer::collection($gammas)];
