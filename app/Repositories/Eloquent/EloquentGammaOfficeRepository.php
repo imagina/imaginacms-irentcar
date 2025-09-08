@@ -53,8 +53,8 @@ class EloquentGammaOfficeRepository extends EloquentCoreRepository implements Ga
          */
         if (isset($filter->dailyAvailavility) && isset($filter->dailyAvailavility['startDate']) && isset($filter->dailyAvailavility['endDate'])) {
             $query->with(['dailyAvailabilities' => function ($q) use ($filter) {
-                $q->whereDate('date', '>=', $filter->dailyAvailavility['startDate'])
-                    ->whereDate('date', '<=', $filter->dailyAvailavility['endDate']);
+                $q->whereDate('available_date', '>=', $filter->dailyAvailavility['startDate'])
+                    ->whereDate('available_date', '<=', $filter->dailyAvailavility['endDate']);
             }]);
         }
 
