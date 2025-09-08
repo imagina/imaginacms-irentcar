@@ -8,12 +8,12 @@
 
 <div class="content-email-reservation">
 
+    {{--
     <h1 class="title" style="text-align: center;width: 80%;font-size: 30px;margin: 12px auto;">
         {{itrans('irentcar::reservation.single')}} #{{$reservation->id}}
     </h1>
-
-    <div
-        style="font-family: Arial, sans-serif; font-size: 12px; color: #333; line-height: 1.5; background-color: #f9f9f9; padding: 20px;">
+    --}}
+    <div style="font-family:Trebuchet MS, Arial, sans-serif;font-size: 14px;line-height: 1.5; padding: 30px;">
 
         @include('irentcar::emails.reservation.partials.details')
 
