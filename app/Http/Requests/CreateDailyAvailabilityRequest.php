@@ -11,7 +11,7 @@ class CreateDailyAvailabilityRequest extends CoreFormRequest
     {
         return [
             'gamma_office_id' => 'required|integer|exists:irentcar__gamma_office,id',
-            'date' => [
+            'available_date' => [
                 'required',
                 'date_format:Y-m-d',
             ],
@@ -36,8 +36,8 @@ class CreateDailyAvailabilityRequest extends CoreFormRequest
         return [
             'gamma_office_id.required' => itrans('irentcar::dailyavailability.messages.gammaOfficeIdIsRequired'),
             'gamma_office_id.exists' => itrans('irentcar::dailyavailability.messages.gammaOfficeIdExists'),
-            'date.required' => itrans('irentcar::dailyavailability.messages.dateIsRequired'),
-            'date.date_format' => itrans('irentcar::dailyavailability.messages.dateFormat'),
+            'available_date.required' => itrans('irentcar::dailyavailability.messages.dateIsRequired'),
+            'available_date.date_format' => itrans('irentcar::dailyavailability.messages.dateFormat'),
         ];
     }
 
