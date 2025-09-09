@@ -20,9 +20,9 @@ class ValidationGammasToReservationRequest extends CoreFormRequest
     {
         return [
             'pickup_office_id' => 'required|integer|exists:irentcar__offices,id',
-            'pickup_date' => ['required', 'date_format:Y-m-d H:i:s'],
+            'pickup_date' => ['required', 'date_format:Y-m-d H:i'],
             'dropoff_office_id' => 'required|integer|exists:irentcar__offices,id',
-            'dropoff_date' => ['required', 'date_format:Y-m-d H:i:s'],
+            'dropoff_date' => ['required', 'date_format:Y-m-d H:i'],
         ];
     }
 
