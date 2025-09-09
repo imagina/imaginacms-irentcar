@@ -65,7 +65,7 @@ class GammaOffice extends CoreModel
     //TODO Revisar si esto es necesario
     public function extras()
     {
-        return $this->belongsToMany(Extras::class, 'irentcar__gamma_office_extra')
+        return $this->belongsToMany(Extra::class, 'irentcar__gamma_office_extra')
             ->withPivot('id', 'gamma_office_id', 'extra_id', 'price')
             ->withTimestamps();
     }
