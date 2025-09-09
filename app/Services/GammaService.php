@@ -101,7 +101,15 @@ class GammaService
         // Recorre cada gamma de esa oficina
         foreach ($gammasOffice as $gammaOffice) {
             if ($this->isGammaAvailableAllDays($gammaOffice, $dailyAvailabilities, $startDate, $endDate)) {
-                $availableGammas[] = $gammaOffice->gamma;
+
+                /* $gamma = $gammaOffice->gamma;
+                if (in_array('extras', $paramsFromRequest['include'])) {
+                    $gamma->extras = $gammaOffice->extras;
+                } */
+                //$availableGammas[] = $gamma;
+
+                //$availableGammas[] = $gammaOffice->gamma;
+                $availableGammas[] = $gammaOffice;
             }
         }
 
