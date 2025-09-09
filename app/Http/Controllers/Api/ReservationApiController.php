@@ -64,15 +64,13 @@ class ReservationApiController extends CoreApiController
 
       //Get Parameters from request
       $params = $this->getParamsRequest($request);
-
-      //Get Data
-      $modelData = $request->input('attributes') ?? [];
+      $filters = (array)$params->filter;
 
       //Validate Request
-      $this->validateWithModelRules($modelData, 'validationGammasToReservation');
+      $this->validateWithModelRules($filters, 'validationGammasToReservation');
 
       //Process to get gammas
-      $gammas = $gammaService->getGammasToReservations($modelData, $params);
+      $gammas = $gammaService->getGammasToReservations($filters, $params);
 
       //Response
       $response = ['data' => GammaTransformer::collection($gammas)];
