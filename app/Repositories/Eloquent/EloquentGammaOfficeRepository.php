@@ -58,6 +58,25 @@ class EloquentGammaOfficeRepository extends EloquentCoreRepository implements Ga
             }]);
         }
 
+        /**
+         * Filter locatable
+         */
+        if (isset($filter->locatable)) {
+            $query->whereHas('office.locatable', function ($q) use ($filter) {
+                if (isset($filter->locatable['countryId'])) {
+                    $q->where('country_id', $filter->locatable['countryId']);
+                }
+                if (isset($filter->locatable['provinceId'])) {
+                    $q->where('province_id', $filter->locatable['provinceId']);
+                }
+                if (isset($filter->locatable['cityId'])) {
+                    $q->where('city_id', $filter->locatable['cityId']);
+                }
+                if (isset($filter->locatable['address'])) {
+                    $q->where('address', 'LIKE', '%' . $filter->locatable['address'] . '%');
+                }
+            });
+        }
 
 
         //Response
