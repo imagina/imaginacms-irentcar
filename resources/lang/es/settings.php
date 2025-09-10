@@ -11,4 +11,5 @@ return [
     'minDriveAge' => 'Edad Minima del Conductor',
     'configurationToGetAvailableGammas' => 'Configuracion para obtener las Gamas Disponibles',
     'userEmailsToNotify' => 'Correos a notificar',
+    'updateDailyAvailabilitiesAfterCancelReservation' => 'Actualizar Disponibilidades Diarias despues de cancelar una reserva',
 ];

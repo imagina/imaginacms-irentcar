@@ -11,4 +11,5 @@ return [
     'minDriveAge' => 'Minimum Driver Age',
     'configurationToGetAvailableGammas' => 'Configuration to Get Available Gammas',
     'userEmailsToNotify' => 'User Emaisl to Notify',
+    'updateDailyAvailabilitiesAfterCancelReservation' => 'Update daily availabilities after to cancel a reservation',
 ];

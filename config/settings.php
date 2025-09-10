@@ -141,5 +141,17 @@ return [
             ],
         ]
     ],
+    'updateDailyAvailabilitiesAfterCancelReservation' => [
+        'name' => 'irentcart::updateDailyAvailabilitiesAfterCancelReservation',
+        'default' => '1',
+        'dynamicField' => [
+            'type' => 'checkbox',
+            'props' => [
+                'trueValue' => '1',
+                'falseValue' => '0',
+                'label' => 'irentcar::settings.updateDailyAvailabilitiesAfterCancelReservation',
+            ],
+        ]
+    ],
 
 ];
