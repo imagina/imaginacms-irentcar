@@ -29,7 +29,12 @@ class Reservation extends CoreModel
             ]
         ],
         'creating' => [],
-        'updated' => [],
+        'updated' => [
+            [
+                'path' => 'Modules\Inotification\Events\SendNotification',
+                'extraData' => ['event' => 'updated']
+            ]
+        ],
         'updating' => [],
         'deleting' => [],
         'deleted' => []
@@ -170,12 +175,20 @@ class Reservation extends CoreModel
         return [
             'created' => [
                 "email" => $allEmails,
-                "title" =>  itrans("irentcar::reservation.email.created.title"),
+                "title" =>  itrans("irentcar::reservation.email.created.title", ['reservation_number' => $this->id]),
                 "content" => "irentcar::emails.reservation.index",
                 "extraParams" => [
                     "reservation" => $this
                 ],
-            ]
+            ],
+            'updated' => [
+                "email" => $allEmails,
+                "title" =>  itrans("irentcar::reservation.email.updated.title", ['reservation_number' => $this->id]),
+                "content" => "irentcar::emails.reservation.index",
+                "extraParams" => [
+                    "reservation" => $this
+                ],
+            ],
         ];
     }
 }

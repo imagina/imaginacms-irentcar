@@ -5,11 +5,15 @@ namespace Modules\Irentcar\Http\Requests;
 use Imagina\Icore\Http\Request\CoreFormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
+use Modules\Irentcar\Models\ReservationStatus;
+
 class UpdateReservationRequest extends CoreFormRequest
 {
     public function rules(): array
     {
-        return [];
+        return [
+            'status_id' => 'nullable|integer|in:' . implode(',', array_keys((new ReservationStatus())->lists())),
+        ];
     }
 
     public function translationRules(): array
@@ -24,7 +28,9 @@ class UpdateReservationRequest extends CoreFormRequest
 
     public function messages(): array
     {
-        return [];
+        return [
+            'status_id.in' => itrans('irentcar::common.messages.statusIn'),
+        ];
     }
 
     public function translationMessages(): array
