@@ -8,9 +8,20 @@
     {{ $reservation->id}}
 </div>
 
-<p style="font-size:14px; margin: 10px 0; color: #172E3F;">
-    {{itrans('irentcar::email.confirmation description')}}
-</p>
+{{--ONLY CREATED--}}
+@if($reservation->status_id == "1")
+    <p style="font-size:14px; margin: 10px 0; color: #172E3F;">
+        {{itrans('irentcar::email.confirmation description')}}
+    </p>
+@else
+    {{--ONLY UPDATED--}}
+    <p style="font-size:14px; margin: 10px 0; color: #172E3F;">
+        <strong>{{itrans('irentcar::email.status')}}:</strong>
+    </p>
+    <div style="font-size:14px; color: #172E3F;text-transform:uppercase">
+        {{$reservation->status['title']}}
+    </div>
+@endif
 
 <hr style="color:#62748E4D">
 

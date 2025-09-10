@@ -32,8 +32,12 @@ return [
     ],
     'email' => [
         'created' => [
-            'title' => 'Reservacion Creada',
+            'title' => 'Reservacion Creada #:reservation_number',
             'message' => ' Se ha creado una reservacion'
-        ]
+        ],
+        'updated' => [
+            'title' => 'Reservacion Actualizada #:reservation_number',
+            'message' => ' Se ha actualizado la reservacion #:reservation_number'
+        ],
     ]
 ];

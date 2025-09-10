@@ -25,7 +25,8 @@
 
         <td style="padding-left: 15px; vertical-align: top;">
             <p style="margin: 0; color: #000;">
-                <strong>{{ $reservation->gamma->title }}</strong>
+                <strong>{{ $reservation->gamma->title }}</strong><br>
+                <strong>{{ $reservation->gamma->summary }}</strong>
             </p>
             <p style="margin: 0; color: #5B6077; font-size: 14px;">
                 {{ $reservation->gamma->passengers_number }}{{ ' ' . itrans('irentcar::email.passengers') }}

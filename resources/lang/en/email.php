@@ -2,6 +2,7 @@
 
 return [
     'reservation details' => 'Detalles de la reserva',
+    'status' => 'Status',
     'confirmation number' => 'Número de confirmación',
     'confirmation description' => ' Se ha completado su reserva. Anote su número de confirmación. Si ha introducido una dirección de correo electrónico válida, recibirá una confirmación de esta reserva. Compruebe la carpeta de correo no deseada.',
     'pickup date' => 'Fecha y hora de la recogida',
