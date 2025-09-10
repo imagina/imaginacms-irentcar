@@ -13,18 +13,29 @@
 
 <h3 style="font-size: 20px; margin-bottom: 10px; color: #172E3F;">{{itrans('irentcar::email.car information')}}</h3>
 
-<p style="margin: 0; color: #000;"> <strong>{{ $reservation->gamma->title }}</strong></p>
-<p style="margin: 0; color: #5B6077; font-size: 14px;">{{ $reservation->gamma->passengers_number }}
-    {{itrans('irentcar::email.passengers')}}
-</p>
-<p style="margin: 0; color: #5B6077;font-size:14px;">{{ $reservation->gamma->luggage }}
-    {{itrans('irentcar::email.luggage')}}
-</p>
+<table style="width: 100%; border-collapse: collapse;">
+    <tr>
 
+        <td style="width: 200px; vertical-align: top;">
+            @if(!empty($filesByZone) && isset($filesByZone->mainimage))
+                <img src="{{ $filesByZone->mainimage->thumbnails->smallThumb}}" alt="Imagen referencial"
+                    style="max-width: 200px;">
+            @endif
+        </td>
 
-@if(!empty($filesByZone) && isset($filesByZone->mainimage))
-    <img src="{{ $filesByZone->mainimage->thumbnails->smallThumb}}" alt="Imagen referencial" style="max-width: 200px;">
-@endif
+        <td style="padding-left: 15px; vertical-align: top;">
+            <p style="margin: 0; color: #000;">
+                <strong>{{ $reservation->gamma->title }}</strong>
+            </p>
+            <p style="margin: 0; color: #5B6077; font-size: 14px;">
+                {{ $reservation->gamma->passengers_number }}{{ ' ' . itrans('irentcar::email.passengers') }}
+            </p>
+            <p style="margin: 0; color: #5B6077; font-size: 14px;">
+                {{ $reservation->gamma->luggage }}{{ ' ' . itrans('irentcar::email.luggage') }}
+            </p>
+        </td>
+    </tr>
+</table>
 
 <hr style="color:#62748E4D">
 
