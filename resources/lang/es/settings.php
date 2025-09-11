@@ -10,6 +10,7 @@ return [
     'slotRangeEnd' => 'Slot termina',
     'minDriveAge' => 'Edad Minima del Conductor',
     'configurationToGetAvailableGammas' => 'Configuracion para obtener las Gamas Disponibles',
-    'userEmailsToNotify' => 'Correos a notificar',
+    'userEmailsToNotify' => 'Correos a notificar: reservaciones',
     'updateDailyAvailabilitiesAfterCancelReservation' => 'Actualizar Disponibilidades Diarias despues de cancelar una reserva',
+    'extraInformation' => 'INFORMACION EXTRA'
 ];

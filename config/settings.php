@@ -153,5 +153,16 @@ return [
             ],
         ]
     ],
+    'extraInformation' => [
+        'name' => 'irentcar::extraInformation',
+        'default' => null,
+        'dynamicField' => [
+            'type' => 'html',
+            'colClass' => 'col-12',
+            'props' => [
+                'label' => 'irentcar::settings.extraInformation',
+            ],
+        ]
+    ],
 
 ];
