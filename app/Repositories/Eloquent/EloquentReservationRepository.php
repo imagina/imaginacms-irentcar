@@ -93,4 +93,14 @@ class EloquentReservationRepository extends EloquentCoreRepository implements Re
     {
         $data = app("Modules\Irentcar\Services\ReservationService")->getDataToCreate($data);
     }
+
+    protected function beforeUpdate(&$model, &$data): void
+    {
+        $result = app("Modules\Irentcar\Services\ReservationService")->processBeforeUpdate($model, $data);
+    }
+
+    protected function afterUpdate(&$model, &$data): void
+    {
+        $result = app("Modules\Irentcar\Services\ReservationService")->processAfterUpdate($model, $data);
+    }
 }

@@ -11,6 +11,10 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 
 use Symfony\Component\HttpFoundation\Response;
+use Exception;
+
+use Modules\Irentcar\Models\ReservationStatus;
+use Modules\Irentcar\Models\DailyAvailability;
 
 class ReservationService
 {
@@ -218,6 +222,60 @@ class ReservationService
                     'reason'             => null,
                     'price'              => null
                 ]);
+            }
+        }
+    }
+
+    /**
+     * Process Before Update Reservation
+     */
+    public function processBeforeUpdate($model, $data)
+    {
+        //Get Cancelled Status
+        $cancelledStatus = ReservationStatus::CANCELLED;
+
+        if ($model->status_id == $cancelledStatus)
+            throw new Exception(itrans('irentcar::reservation.validation.The reservation has already been cancelled'), Response::HTTP_CONFLICT);
+    }
+    /**
+     * Process After Update Reservation
+     */
+    public function processAfterUpdate($model, $data)
+    {
+
+        if (!setting("irentcar::updateDailyAvailabilitiesAfterCancelReservation")) {
+            return;
+        }
+
+        //Get Cancelled Status
+        $cancelledStatus = ReservationStatus::CANCELLED;
+
+        //Only if the status was changed to CANCELLED.
+        if ($model->status_id == $cancelledStatus) {
+
+            //Get availabilities only in this range and apply keyBy
+            // keyBy transforma la colección en un array asociativo usando la fecha como clave,
+            $dailyAvailabilities = DailyAvailability::where('gamma_office_id', $model->gamma_office_id)
+                ->whereBetween('available_date', [
+                    Carbon::parse($model->pickup_date)->toDateString(),
+                    Carbon::parse($model->dropoff_date)->toDateString()
+                ])
+                ->get()
+                ->keyBy(fn($item) => Carbon::parse($item->available_date)->toDateString());
+
+            //Create a period with Dates
+            $period = CarbonPeriod::create(
+                Carbon::parse($model->pickup_date)->startOfDay(),
+                Carbon::parse($model->dropoff_date)->startOfDay()
+            );
+
+            foreach ($period as $date) {
+                $dateKey = $date->format('Y-m-d');
+                $daily = $dailyAvailabilities[$dateKey] ?? null;
+
+                if ($daily && $daily->reserved_quantity > 0) {
+                    $daily->decrement('reserved_quantity');
+                }
             }
         }
     }
