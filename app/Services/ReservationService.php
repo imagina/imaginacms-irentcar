@@ -42,7 +42,7 @@ class ReservationService
      * Get Attributes to create a Reservation
      * @param mixed $data
      */
-    public function getDataToCreate($data)
+    public function getDataToCreate($data, $isPreview = false)
     {
 
         $this->validationsUser($data);
@@ -51,7 +51,10 @@ class ReservationService
         $this->getExtrasData($data);
         $this->getTotalPrice($data);
         $this->getConvertionsData($data);
-        $this->processToDailyAvailabilities($data);
+
+        if (!$isPreview) {
+            $this->processToDailyAvailabilities($data);
+        }
 
         return $data;
     }

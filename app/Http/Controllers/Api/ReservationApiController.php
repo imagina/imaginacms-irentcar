@@ -105,7 +105,7 @@ class ReservationApiController extends CoreApiController
       $this->validateWithModelRules($modelData, 'create');
 
       //Important: This service is also invoked during the reservation creation process.
-      $dataToSave = $reservationService->getDataToCreate($modelData);
+      $dataToSave = $reservationService->getDataToCreate($modelData, true);
 
       //Add conversion to USD
       $dataToSave['total_price_usd'] = PriceHelper::getTotalPriceInUsd($dataToSave['options'], $dataToSave['total_price']);
