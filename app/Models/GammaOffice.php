@@ -9,74 +9,82 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class GammaOffice extends CoreModel
 {
 
-    protected $table = 'irentcar__gamma_office';
-    public string $transformer = 'Modules\Irentcar\Transformers\GammaOfficeTransformer';
-    public string $repository = 'Modules\Irentcar\Repositories\GammaOfficeRepository';
-    public array $requestValidation = [
-        'create' => 'Modules\Irentcar\Http\Requests\CreateGammaOfficeRequest',
-        'update' => 'Modules\Irentcar\Http\Requests\UpdateGammaOfficeRequest',
+  protected $table = 'irentcar__gamma_office';
+  public string $transformer = 'Modules\Irentcar\Transformers\GammaOfficeTransformer';
+  public string $repository = 'Modules\Irentcar\Repositories\GammaOfficeRepository';
+  public array $requestValidation = [
+    'create' => 'Modules\Irentcar\Http\Requests\CreateGammaOfficeRequest',
+    'update' => 'Modules\Irentcar\Http\Requests\UpdateGammaOfficeRequest',
+  ];
+  //Instance external/internal events to dispatch with extraData
+  public array $dispatchesEventsWithBindings = [
+    //eg. ['path' => 'path/module/event', 'extraData' => [/*...optional*/]]
+    'created' => [],
+    'creating' => [],
+    'updated' => [],
+    'updating' => [],
+    'deleting' => [],
+    'deleted' => []
+  ];
+
+  protected $fillable = [
+    'office_id',
+    'gamma_id',
+    'quantity',
+    'price',
+    'tax',
+    'status_id'
+  ];
+
+  protected $appends = [
+    'status'
+  ];
+
+  protected function casts(): array
+  {
+    return [
+      'price' => 'int',
+      'tax' => 'int',
     ];
-    //Instance external/internal events to dispatch with extraData
-    public array $dispatchesEventsWithBindings = [
-        //eg. ['path' => 'path/module/event', 'extraData' => [/*...optional*/]]
-        'created' => [],
-        'creating' => [],
-        'updated' => [],
-        'updating' => [],
-        'deleting' => [],
-        'deleted' => []
-    ];
+  }
 
-    protected $fillable = [
-        'office_id',
-        'gamma_id',
-        'quantity',
-        'price',
-        'tax',
-        'status_id'
-    ];
+  //TODO - Duda de como funciona esto, si es necesario o no
+  /* public $modelRelations = [
+      'dailyAvailabilities' => [
+          'relation' => 'hasMany', //Important: For this relationship remember the mandatory parameters to create and update
+          'model' => 'Modules\Irentcar\Models\DailyAvailability'
+      ]
+  ]; */
 
-    protected $appends = [
-        'status'
-    ];
+  public function status(): Attribute
+  {
+    return Attribute::get(function () {
+      $status = new Status();
+      return $status->show($this->status_id);
+    });
+  }
 
-    //TODO - Duda de como funciona esto, si es necesario o no
-    /* public $modelRelations = [
-        'dailyAvailabilities' => [
-            'relation' => 'hasMany', //Important: For this relationship remember the mandatory parameters to create and update
-            'model' => 'Modules\Irentcar\Models\DailyAvailability'
-        ]
-    ]; */
+  //TODO Revisar si esto es necesario
+  public function dailyAvailabilities()
+  {
+    return $this->hasMany(DailyAvailability::class);
+  }
 
-    public function status(): Attribute
-    {
-        return Attribute::get(function () {
-            $status = new Status();
-            return $status->show($this->status_id);
-        });
-    }
+  //TODO Revisar si esto es necesario
+  public function extras()
+  {
+    return $this->belongsToMany(Extra::class, 'irentcar__gamma_office_extra')
+      ->withPivot('id', 'gamma_office_id', 'extra_id', 'price')
+      ->withTimestamps();
+  }
 
-    //TODO Revisar si esto es necesario
-    public function dailyAvailabilities()
-    {
-        return $this->hasMany(DailyAvailability::class);
-    }
+  public function office()
+  {
+    return $this->belongsTo(Office::class, 'office_id');
+  }
 
-    //TODO Revisar si esto es necesario
-    public function extras()
-    {
-        return $this->belongsToMany(Extra::class, 'irentcar__gamma_office_extra')
-            ->withPivot('id', 'gamma_office_id', 'extra_id', 'price')
-            ->withTimestamps();
-    }
-
-    public function office()
-    {
-        return $this->belongsTo(Office::class, 'office_id');
-    }
-
-    public function gamma()
-    {
-        return $this->belongsTo(Gamma::class, 'gamma_id');
-    }
+  public function gamma()
+  {
+    return $this->belongsTo(Gamma::class, 'gamma_id');
+  }
 }
