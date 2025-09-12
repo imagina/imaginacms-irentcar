@@ -26,5 +26,7 @@ return [
     función de las variaciones del tipo de divisa.',
     'gamma information' => 'Con este vehículo puede recorrer un kilometraje ilimitado',
     'conditions and terms' => 'Términos y condiciones del contrato de alquiler',
+    'extras total price' => 'Precio Total de los extras',
+    'rental days' => 'Dias de Renta',
 
 ];

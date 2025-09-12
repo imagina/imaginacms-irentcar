@@ -13,6 +13,18 @@
     {{itrans('irentcar::email.tax price infor')}}
 </p>
 
+@if($reservation->gamma_office_extra_total_price > 0)
+    <p style="margin: 0; margin-top:7px; color: #172E3F">
+        {{itrans('irentcar::email.extras total price')}}:
+        <span style="font-weight:bold">${{ $reservation->gamma_office_extra_total_price }} COP</span>
+    </p>
+@endif
+
+<p style="margin: 0; margin-top:7px; color: #172E3F">
+    {{itrans('irentcar::email.rental days')}}:
+    <span style="font-weight:bold">{{ $reservation->rental_days }}</span>
+</p>
+
 <hr style="color:#62748E4D">
 
 <h3 style="font-size: 20px; margin-bottom: 10px; color: #172E3F;">

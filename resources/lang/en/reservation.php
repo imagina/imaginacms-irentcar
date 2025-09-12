@@ -23,7 +23,8 @@ return [
         'dropoffDateNotValid' => 'La fecha de entrega no es valida',
         'pickupHourNotValid' => 'La hora de recogida no es valida',
         'minimunUserAge' => 'La edad minima para poder reservar debe ser de: :age',
-        'The reservation has already been cancelled' => 'La reservacion ya habia sido cancelada. No se puede volver a cambiar el estado'
+        'The reservation has already been cancelled' => 'La reservacion ya habia sido cancelada. No se puede volver a cambiar el estado',
+        'dropoff date must be greater than pickup date' => 'La fecha de entrega debe ser mayor que la fecha de recogida',
     ],
     'status' => [
         'pending' => 'Pending',
