@@ -66,12 +66,11 @@ class ReservationService
         //Configration from Setting
         $ageSetting = setting("irentcar::minDriveAge");
 
-        //Get age from User Profile
-        $ageField = collect($user->fields)->firstWhere('title', 'age');
-        $age = $ageField->value ?? null;
+        //Get age from User
+        $age = $user->age ?? null;
 
         //Validation Aage
-        if (!$age || $age <= $ageSetting) {
+        if (is_null($age) || $age <= $ageSetting) {
             throw new \Exception(
                 itrans('irentcar::reservation.validation.minimunUserAge', ['age' => $ageSetting]),
                 Response::HTTP_UNPROCESSABLE_ENTITY
@@ -168,10 +167,24 @@ class ReservationService
     private function getTotalPrice(&$data)
     {
         $totalPrice = $data['gamma_office_price'];
+
+        //Validation to add extra total price
         if (isset($data['gamma_office_extra_total_price']))
             $totalPrice += $data['gamma_office_extra_total_price'];
 
-        $data['total_price'] = $totalPrice;
+        //Only dates
+        $pickup = Carbon::parse($data['pickup_date'])->startOfDay();
+        $dropoff = Carbon::parse($data['dropoff_date'])->startOfDay();
+
+        //Extra Validation
+        if ($dropoff->greaterThan($pickup)) {
+            $days = $pickup->diffInDays($dropoff) + 1; //No es solo la diferencia, tomar en cuenta todos los dias
+        } else {
+            throw new Exception(itrans('irentcar::reservation.validation.dropoff date must be greater than pickup date'), Response::HTTP_CONFLICT);
+        }
+
+        $data['rental_days'] = (int)$days;
+        $data['total_price'] = $totalPrice * $data['rental_days'];
     }
 
     /**
