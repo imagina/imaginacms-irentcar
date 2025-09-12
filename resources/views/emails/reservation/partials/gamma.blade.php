@@ -40,22 +40,22 @@
 
 <hr style="color:#62748E4D">
 
-<h3 style="font-size: 20px; margin-bottom: 10px; color: #172E3F;">{{itrans('irentcar::email.extras')}}</h3>
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style=" ">
-    @foreach ($reservation->extras_data as $extra)
+@if (!empty($reservation->extras_data))
+    <h3 style="font-size: 20px; margin-bottom: 10px; color: #172E3F;">{{itrans('irentcar::email.extras')}}</h3>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style=" ">
+        @foreach ($reservation->extras_data as $extra)
 
-        <tr>
-            <td style="padding: 15px;">
-                <strong>{{ $extra['extra']['title'] }}</strong><br>
-                <span style="color: #888;">{{ $extra['extra']['description'] }}</span><br>
-            </td>
-            <td>
-                ${{$extra['price']}} COP
-            </td>
-        </tr>
+            <tr>
+                <td style="padding: 15px;">
+                    <strong>{{ $extra['extra']['title'] }}</strong><br>
+                    <span style="color: #888;">{{ $extra['extra']['description'] }}</span><br>
+                </td>
+                <td>
+                    ${{$extra['price']}} COP
+                </td>
+            </tr>
 
-    @endforeach
-</table>
-
-
-<hr style="color:#62748E4D">
+        @endforeach
+    </table>
+    <hr style="color:#62748E4D">
+@endif
