@@ -6,6 +6,7 @@ use Imagina\Icore\Models\CoreModel;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Carbon\Carbon;
+use Modules\Irentcar\Support\PriceHelper;
 
 class Reservation extends CoreModel
 {
@@ -126,17 +127,7 @@ class Reservation extends CoreModel
     public function totalPriceUsd(): Attribute
     {
         return Attribute::get(function () {
-            $usdRates = $this->options['USDRates'] ?? null;
-
-            if (is_array($usdRates) && isset($usdRates['COP'])) {
-                $copRate = (float) $usdRates['COP'];
-                $totalPrice = (float) $this->total_price;
-
-                return round($totalPrice / $copRate, 2);
-            }
-
-
-            return 0;
+            return PriceHelper::getTotalPriceInUsd($this->options, $this->total_price);
         });
     }
 

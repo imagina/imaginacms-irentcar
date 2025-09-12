@@ -119,6 +119,11 @@ Route::prefix('/irentcar/v1')->group(function () {
                 'path' => '/available/gammas', // Route Path
                 'uses' => 'getAvailableGammas', //Name of the controller method to use
                 'middleware' => [] // if not set up middleware, auth:api will be the default
+            ],
+            [
+                'method' => 'post', // get,post,put....
+                'path' => '/preview', // Route Path
+                'uses' => 'getPreviewReservation', //Name of the controller method to use
             ]
         ]
     ]);
@@ -132,25 +137,25 @@ Route::prefix('/irentcar/v1')->group(function () {
         'module' => 'irentcar',
         'prefix' => 'statuses',
         'staticEntity' => 'Modules\Irentcar\Models\Status',
-      'middleware' => ['index' => [], 'show' => []],
+        'middleware' => ['index' => [], 'show' => []],
     ]);
     Route::apiCrud([
         'module' => 'irentcar',
         'prefix' => 'transmission-types',
         'staticEntity' => 'Modules\Irentcar\Models\TransmissionType',
-      'middleware' => ['index' => [], 'show' => []],
+        'middleware' => ['index' => [], 'show' => []],
     ]);
     Route::apiCrud([
         'module' => 'irentcar',
         'prefix' => 'fuel-types',
         'staticEntity' => 'Modules\Irentcar\Models\FuelType',
-      'middleware' => ['index' => [], 'show' => []],
+        'middleware' => ['index' => [], 'show' => []],
     ]);
     Route::apiCrud([
         'module' => 'irentcar',
         'prefix' => 'vehicle-types',
         'staticEntity' => 'Modules\Irentcar\Models\VehicleType',
-      'middleware' => ['index' => [], 'show' => []],
+        'middleware' => ['index' => [], 'show' => []],
     ]);
     Route::apiCrud([
         'module' => 'irentcar',

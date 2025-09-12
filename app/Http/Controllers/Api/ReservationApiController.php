@@ -19,6 +19,10 @@ use Modules\Irentcar\Services\ValidationDateService;
 use Modules\Irentcar\Services\GammaService;
 use Modules\Irentcar\Transformers\GammaTransformer;
 
+use Modules\Irentcar\Services\ReservationService;
+use Imagina\Icore\Transformers\CoreResource;
+use Modules\Irentcar\Support\PriceHelper;
+
 class ReservationApiController extends CoreApiController
 {
   use CoreApiControllerHelpers;
@@ -29,7 +33,7 @@ class ReservationApiController extends CoreApiController
   }
 
   /**
-   * Validation Dates
+   * Validation Dates (Previo Reservation)
    * @return mixed
    */
   public function validationDate(Request $request, ValidationDateService $validationDateService): JsonResponse
@@ -55,7 +59,7 @@ class ReservationApiController extends CoreApiController
   }
 
   /**
-   * Validation Dates
+   * Available Gammas (Previo Reservation)
    * @return mixed
    */
   public function getAvailableGammas(Request $request, GammaService $gammaService): JsonResponse
@@ -76,6 +80,41 @@ class ReservationApiController extends CoreApiController
       $response = ['data' => GammaTransformer::collection($gammas)];
 
       if ($params->page) $response['meta'] = ['page' => $this->pageTransformer($gammas)];
+    } catch (Exception $e) {
+      [$status, $response] = $this->getErrorResponse($e);
+    }
+
+    //Return response
+    return response()->json($response, $status ?? Response::HTTP_OK);
+  }
+
+  /**
+   * Get Preview data to save a Reservation
+   */
+  public function getPreviewReservation(Request $request, ReservationService $reservationService): JsonResponse
+  {
+    try {
+
+      //Get Parameters from request
+      $params = $this->getParamsRequest($request);
+
+      //Get Data
+      $modelData = $request->input('attributes') ?? [];
+
+      //Validate Request
+      $this->validateWithModelRules($modelData, 'create');
+
+      //Important: This service is also invoked during the reservation creation process.
+      $dataToSave = $reservationService->getDataToCreate($modelData);
+
+      //Add conversion to USD
+      $dataToSave['total_price_usd'] = PriceHelper::getTotalPriceInUsd($dataToSave['options'], $dataToSave['total_price']);
+
+      //Final Response
+      $response = ['data' => CoreResource::transformData($dataToSave)];
+
+      //Response
+      $response = ['data' => $dataToSave];
     } catch (Exception $e) {
       [$status, $response] = $this->getErrorResponse($e);
     }
