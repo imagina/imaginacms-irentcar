@@ -54,6 +54,7 @@ class Reservation extends CoreModel
         'gamma_office_price',
         'gamma_office_tax',
         'gamma_office_extra_total_price',
+        'rental_days',
         'total_price',
         'status_id',
         'options'
