@@ -52,8 +52,10 @@ class ReservationService
         $this->getTotalPrice($data);
         $this->getConvertionsData($data);
 
+        //Not preview
         if (!$isPreview) {
             $this->processToDailyAvailabilities($data);
+            $this->setDefaultStatus($data);
         }
 
         return $data;
@@ -143,7 +145,7 @@ class ReservationService
 
             //Params to Query
             $params = [
-                'filter' => ['ids' => $ids],
+                'filter' => ['id' => $ids],
                 'include' => ['extra']
             ];
 
@@ -201,6 +203,14 @@ class ReservationService
         if (isset($result['USDRates'])) {
             $data['options']['USDRates'] = $result['USDRates'];
         }
+    }
+
+    /**
+     * Resevation Default Status
+     */
+    private function setDefaultStatus(&$data)
+    {
+        $data["status_id"] = 1; //ReservationStatus APPROVED
     }
 
     /**
