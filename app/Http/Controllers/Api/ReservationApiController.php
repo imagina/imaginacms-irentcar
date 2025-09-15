@@ -105,21 +105,36 @@ class ReservationApiController extends CoreApiController
       $this->validateWithModelRules($modelData, 'create');
 
       //Important: This service is also invoked during the reservation creation process.
-      $dataToSave = $reservationService->getDataToCreate($modelData);
+      $dataToSave = $reservationService->getDataToCreate($modelData, true);
 
       //Add conversion to USD
       $dataToSave['total_price_usd'] = PriceHelper::getTotalPriceInUsd($dataToSave['options'], $dataToSave['total_price']);
 
       //Final Response
-      $response = ['data' => CoreResource::transformData($dataToSave)];
-
-      //Response
-      $response = ['data' => $dataToSave];
+      $response = ['data' => $this->toCamelCaseKeys($dataToSave)];
     } catch (Exception $e) {
       [$status, $response] = $this->getErrorResponse($e);
     }
 
     //Return response
     return response()->json($response, $status ?? Response::HTTP_OK);
+  }
+
+  /**
+   * toCamelCaseKeys
+   */
+  public function toCamelCaseKeys(array $data): array
+  {
+    $result = [];
+    foreach ($data as $key => $value) {
+
+      if ($key != "options") {
+        $newKey = \Str::camel($key);
+        $result[$newKey] = is_array($value) ? $this->toCamelCaseKeys($value) : $value;
+      } else {
+        $result[$key] = $value;
+      }
+    }
+    return $result;
   }
 }

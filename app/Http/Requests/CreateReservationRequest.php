@@ -16,7 +16,7 @@ class CreateReservationRequest extends CoreFormRequest
             'dropoff_office_id' => 'required|integer|exists:irentcar__offices,id',
             //'gamma_id' => 'required|integer|exists:irentcar__gammas,id',
             'gamma_office_id' => 'required|integer|exists:irentcar__gamma_office,id',
-            'gamma_office_extra_ids' => 'nullable|json',
+            'gamma_office_extra_ids' => 'nullable|array',
         ];
     }
 
@@ -45,7 +45,7 @@ class CreateReservationRequest extends CoreFormRequest
             'gamma_id.exists' => itrans('irentcar::reservation.messages.gammaIdExists'),
             'gamma_office_id.required' => itrans('irentcar::reservation.messages.gammaOfficeIdIsRequired'),
             'gamma_office_id.exists' => itrans('irentcar::reservation.messages.gammaOfficeIdExists'),
-            'gamma_office_extra_ids.json' => itrans('irentcar::reservation.messages.gammaOfficeExtraIdsMustBeJson'),
+            'gamma_office_extra_ids.array' => itrans('irentcar::reservation.messages.gammaOfficeExtraIdsMustBeArray'),
         ];
     }
 

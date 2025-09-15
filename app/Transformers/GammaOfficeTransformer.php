@@ -4,6 +4,8 @@ namespace Modules\Irentcar\Transformers;
 
 use Imagina\Icore\Transformers\CoreResource;
 
+use Modules\Irentcar\Support\PriceHelper;
+
 class GammaOfficeTransformer extends CoreResource
 {
   /**
@@ -13,12 +15,14 @@ class GammaOfficeTransformer extends CoreResource
   protected array $excludeRelations = [];
 
   /**
-  * Method to merge values with response
-  *
-  * @return array
-  */
+   * Method to merge values with response
+   *
+   * @return array
+   */
   public function modelAttributes($request): array
   {
-    return [];
+    return [
+      'priceConversions' => PriceHelper::getPriceConversions($this->price)
+    ];
   }
 }

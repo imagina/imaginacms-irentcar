@@ -23,8 +23,8 @@ class InitialOfficesSeeder extends Seeder
             'province_id' => 721,
             'city_id' => 956,
             'address' => 'Calle 1, con Carrera 1',
-            'lat' => '-142.545469874',
-            'lng' => '85.639821'
+            'latitude' => '-142.545469874',
+            'longitude' => '85.639821'
           ]
         ],
         [
@@ -36,8 +36,8 @@ class InitialOfficesSeeder extends Seeder
             'province_id' => 721,
             'city_id' => 956,
             'address' => 'Calle 2, con Carrera 2',
-            'lat' => '-142.545469874',
-            'lng' => '85.639821'
+            'latitude' => '-142.545469874',
+            'longitude' => '85.639821'
           ]
         ]
       ];

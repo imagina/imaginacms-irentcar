@@ -16,6 +16,8 @@ use Exception;
 use Modules\Irentcar\Models\ReservationStatus;
 use Modules\Irentcar\Models\DailyAvailability;
 
+use Modules\Irentcar\Support\PriceHelper;
+
 class ReservationService
 {
     private $gammaOfficeRepository;
@@ -42,7 +44,7 @@ class ReservationService
      * Get Attributes to create a Reservation
      * @param mixed $data
      */
-    public function getDataToCreate($data)
+    public function getDataToCreate($data, $isPreview = false)
     {
 
         $this->validationsUser($data);
@@ -51,7 +53,12 @@ class ReservationService
         $this->getExtrasData($data);
         $this->getTotalPrice($data);
         $this->getConvertionsData($data);
-        $this->processToDailyAvailabilities($data);
+
+        //Not preview
+        if (!$isPreview) {
+            $this->processToDailyAvailabilities($data);
+            $this->setDefaultStatus($data);
+        }
 
         return $data;
     }
@@ -136,11 +143,11 @@ class ReservationService
     {
         if (isset($data['gamma_office_extra_ids'])) {
             //Ids to array
-            $ids =  json_decode($data['gamma_office_extra_ids']);
+            $ids =  $data['gamma_office_extra_ids'];
 
             //Params to Query
             $params = [
-                'filter' => ['ids' => $ids],
+                'filter' => ['id' => $ids],
                 'include' => ['extra']
             ];
 
@@ -154,7 +161,7 @@ class ReservationService
                 $totalPrice += $extra->price;
             }
 
-
+            //
             //Final Data
             $data['extras_data'] = $extras;
             $data['gamma_office_extra_total_price'] = $totalPrice;
@@ -201,6 +208,14 @@ class ReservationService
     }
 
     /**
+     * Resevation Default Status
+     */
+    private function setDefaultStatus(&$data)
+    {
+        $data["status_id"] = 1; //ReservationStatus APPROVED
+    }
+
+    /**
      * Process to DailyAvailabilities: Create or Update reserved_quantity
      */
     private function processToDailyAvailabilities(array &$data): void
@@ -223,8 +238,11 @@ class ReservationService
 
             if ($daily) {
                 // Ya existe: incrementar reserved_quantity
-                $daily->reserved_quantity += 1;
-                $daily->save();
+                $newReserved = $daily->reserved_quantity + 1;
+                $this->dailyAvailabilityRepository->updateBy(
+                    $daily->id,
+                    ['reserved_quantity' => $newReserved]
+                );
             } else {
                 // No existe: crear nuevo registro con algunos datos del padre
                 $this->dailyAvailabilityRepository->create([

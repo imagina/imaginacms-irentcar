@@ -32,8 +32,11 @@
 </h3>
 
 <p style="margin-bottom: 0px; color: #172E3F">{{itrans('irentcar::email.pay at dropoff')}}</p>
-<p style="margin: 0; color: #000;"><strong>$ {{ $reservation->total_price_usd }} USD</strong>
-    ({{ $reservation->total_price }} COP)</p>
+
+@foreach ($reservation->total_price_conversions as $key => $total)
+    <p style="margin: 0; color: #000; text-transform:uppercase"><strong>{{ $total }} {{$key}}</strong>
+        ({{ $reservation->total_price }} COP)</p>
+@endforeach
 
 <hr style="color:#62748E4D">
 
