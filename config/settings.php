@@ -155,11 +155,12 @@ return [
     ],
     'showInCurrencies' => [
         'name' => 'irentcar::showInCurrencies',
-        'default' => null,
+        'default' => [],
         'dynamicField' => [
             'type' => 'select',
             'props' => [
                 'label' => 'irentcar::settings.showInCurrencies.title',
+                'multiple' => true,
                 'options' => [
                     ['label' => 'USD', 'value' => 'USD'],
                     ['label' => 'EUR', 'value' => 'EUR'],
