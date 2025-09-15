@@ -10,6 +10,7 @@ use Modules\Irentcar\Repositories\ReservationRepository;
 
 use Exception;
 use Illuminate\Http\Request;
+use Modules\Irentcar\Transformers\GammaOfficeTransformer;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\JsonResponse;
 
@@ -77,7 +78,7 @@ class ReservationApiController extends CoreApiController
       $gammas = $gammaService->getGammasToReservations($filters, $params);
 
       //Response
-      $response = ['data' => GammaTransformer::collection($gammas)];
+      $response = ['data' => GammaOfficeTransformer::collection($gammas)];
 
       if ($params->page) $response['meta'] = ['page' => $this->pageTransformer($gammas)];
     } catch (Exception $e) {
