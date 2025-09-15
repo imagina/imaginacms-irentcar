@@ -143,7 +143,7 @@ class ReservationService
     {
         if (isset($data['gamma_office_extra_ids'])) {
             //Ids to array
-            $ids =  json_decode($data['gamma_office_extra_ids']);
+            $ids =  $data['gamma_office_extra_ids'];
 
             //Params to Query
             $params = [
@@ -161,7 +161,7 @@ class ReservationService
                 $totalPrice += $extra->price;
             }
 
-
+            //
             //Final Data
             $data['extras_data'] = $extras;
             $data['gamma_office_extra_total_price'] = $totalPrice;

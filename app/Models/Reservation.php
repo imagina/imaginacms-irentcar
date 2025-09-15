@@ -66,7 +66,8 @@ class Reservation extends CoreModel
         return [
             'gamma_data' => 'json',
             'extras_data' => 'json',
-            'options' => 'json'
+            'options' => 'json',
+            'gamma_office_extra_ids' => 'json'
         ];
     }
 
