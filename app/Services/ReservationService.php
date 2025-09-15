@@ -16,6 +16,8 @@ use Exception;
 use Modules\Irentcar\Models\ReservationStatus;
 use Modules\Irentcar\Models\DailyAvailability;
 
+use Modules\Irentcar\Support\PriceHelper;
+
 class ReservationService
 {
     private $gammaOfficeRepository;
@@ -236,8 +238,11 @@ class ReservationService
 
             if ($daily) {
                 // Ya existe: incrementar reserved_quantity
-                $daily->reserved_quantity += 1;
-                $daily->save();
+                $newReserved = $daily->reserved_quantity + 1;
+                $this->dailyAvailabilityRepository->updateBy(
+                    $daily->id,
+                    ['reserved_quantity' => $newReserved]
+                );
             } else {
                 // No existe: crear nuevo registro con algunos datos del padre
                 $this->dailyAvailabilityRepository->create([
