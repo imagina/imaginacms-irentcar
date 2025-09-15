@@ -12,5 +12,8 @@ return [
     'configurationToGetAvailableGammas' => 'Configuration to Get Available Gammas',
     'userEmailsToNotify' => 'User Emaisl to Notify',
     'updateDailyAvailabilitiesAfterCancelReservation' => 'Update daily availabilities after to cancel a reservation',
-    'extraInformation' => 'EXTRA INFORMATION'
+    'extraInformation' => 'EXTRA INFORMATION',
+    'showInCurrencies' => [
+        'title' => 'Mostrar conversion de precio en',
+    ]
 ];
