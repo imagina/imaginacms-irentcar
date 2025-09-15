@@ -71,14 +71,19 @@ class PriceHelper
         return $prices;
     }
 
-    public static function getPriceConversions($price): ?array
+    /**
+     * @param mixed $price
+     * @param mixed $usdRates (Format from N8N)
+     */
+    public static function getPriceConversions($price, $usdRates = null): ?array
     {
         if (is_null($price)) {
             return null;
         }
 
+        $rates = $usdRates ?? getConversionRates();
+
         $currencies = setting('irentcar::showInCurrencies');
-        $rates = getConversionRates();
         $usdRates = $rates['USDRates'] ?? [];
 
         if (empty($currencies) || empty($usdRates)) {
@@ -90,11 +95,11 @@ class PriceHelper
 
         foreach ($currencies as $currency) {
             if ($currency === 'USD' && isset($usdRates['COP'])) {
-                $prices['USD'] = self::getTotalPriceInUsd($rates, $price);
+                $prices['usd'] = self::getTotalPriceInUsd($rates, $price);
             }
 
             if ($currency === 'EUR') {
-                $prices['EUR'] = self::convertCopToEur($rates, $price);
+                $prices['eur'] = self::convertCopToEur($rates, $price);
             }
         }
 

@@ -73,7 +73,7 @@ class Reservation extends CoreModel
 
     protected $appends = [
         'status',
-        'total_price_usd',
+        'total_price_conversions',
         'gamma_office_tax_amount'
     ];
 
@@ -125,10 +125,11 @@ class Reservation extends CoreModel
         );
     }
 
-    public function totalPriceUsd(): Attribute
+    public function totalPriceConversions(): Attribute
     {
         return Attribute::get(function () {
-            return PriceHelper::getTotalPriceInUsd($this->options, $this->total_price);
+            //return PriceHelper::getTotalPriceInUsd($this->options, $this->total_price);
+            return PriceHelper::getPriceConversions($this->total_price, $this->options);
         });
     }
 
