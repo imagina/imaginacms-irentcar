@@ -109,7 +109,9 @@ class ReservationApiController extends CoreApiController
       $dataToSave = $reservationService->getDataToCreate($modelData, true);
 
       //Add conversion to USD
-      $dataToSave['total_price_usd'] = PriceHelper::getTotalPriceInUsd($dataToSave['options'], $dataToSave['total_price']);
+      $dataToSave['gamma_office_extra_total_price_conversions'] = PriceHelper::getPriceConversions($dataToSave['gamma_office_extra_total_price'], $dataToSave['options']);
+      $dataToSave['gamma_office_price_conversions'] = PriceHelper::getPriceConversions($dataToSave['gamma_office_price'], $dataToSave['options']);
+      $dataToSave['total_price_conversions'] = PriceHelper::getPriceConversions($dataToSave['total_price'], $dataToSave['options']);
 
       //Final Response
       $response = ['data' => $this->toCamelCaseKeys($dataToSave)];
