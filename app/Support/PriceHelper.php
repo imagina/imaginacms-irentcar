@@ -41,37 +41,6 @@ class PriceHelper
     }
 
     /**
-     * Get Price Conversions from Global SETTING (Used from APIs)
-     */
-    public static function getPriceConversions2($price): ?array
-    {
-        if (is_null($price))
-            return null;
-
-        $currency = setting('irentcar::showInCurrencies');
-
-        $rates = getConversionRates();
-        $usdRates = $rates['USDRates'] ?? [];
-
-        if (!$currency || empty($usdRates)) {
-            \Log::info('No currency setting or rates available for conversion');
-            return null;
-        }
-
-        $prices = [];
-
-        if ($currency === 'USD' && isset($usdRates['COP'])) {
-            $prices['USD'] = self::getTotalPriceInUsd($rates, $price);
-        }
-
-        if ($currency === 'EUR') {
-            $prices['EUR'] = self::convertCopToEur($rates, $price);
-        }
-
-        return $prices;
-    }
-
-    /**
      * @param mixed $price
      * @param mixed $usdRates (Format from N8N)
      */
