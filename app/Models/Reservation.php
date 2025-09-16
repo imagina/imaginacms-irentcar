@@ -77,6 +77,8 @@ class Reservation extends CoreModel
 
   protected $appends = [
     'status',
+    'gamma_office_extra_total_price_conversions',
+    'gamma_office_price_conversions',
     'total_price_conversions',
     'gamma_office_tax_amount'
   ];
@@ -127,6 +129,20 @@ class Reservation extends CoreModel
       get: fn(string $value) => Carbon::parse($value)->timezone($localTz),
       set: fn(string $value) => Carbon::parse($value, $localTz)->setTimezone('UTC')->format('Y-m-d H:i:s'),
     );
+  }
+
+  public function gammaOfficeExtraTotalPriceConversions(): Attribute
+  {
+    return Attribute::get(function () {
+      return PriceHelper::getPriceConversions($this->gamma_office_extra_total_price, $this->options);
+    });
+  }
+
+  public function gammaOfficePriceConversions(): Attribute
+  {
+    return Attribute::get(function () {
+      return PriceHelper::getPriceConversions($this->gamma_office_price, $this->options);
+    });
   }
 
   public function totalPriceConversions(): Attribute
