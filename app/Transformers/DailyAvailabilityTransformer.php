@@ -21,8 +21,6 @@ class DailyAvailabilityTransformer extends CoreResource
    */
   public function modelAttributes($request): array
   {
-    return [
-      'priceConversions' => PriceHelper::getPriceConversions($this->price)
-    ];
+    return [];
   }
 }
