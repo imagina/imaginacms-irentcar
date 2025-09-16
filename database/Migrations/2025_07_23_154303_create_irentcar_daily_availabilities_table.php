@@ -21,9 +21,12 @@ return new class extends Migration
 
             $table->integer('quantity')->default(0)->unsigned();
             $table->decimal('price', 15, 2)->nullable();
-            $table->timestamp('date');
+            $table->timestamp('available_date')->nullable();
             $table->text('reason')->nullable();
             $table->integer('reserved_quantity')->default(0)->unsigned();
+
+            //UNIQUE
+            $table->unique(['gamma_office_id', 'available_date'], 'unique_gamma_office_ad');
 
             // Audit fields
             $table->timestamps();

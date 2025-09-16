@@ -306,9 +306,12 @@ class ReservationService
 
                 if ($daily && $daily->reserved_quantity > 0) {
                     $newReserved = $daily->reserved_quantity - 1;
+
                     $this->dailyAvailabilityRepository->updateBy(
                         $daily->id,
-                        ['reserved_quantity' => $newReserved]
+                        [
+                            'reserved_quantity' => $newReserved
+                        ]
                     );
                 }
             }
