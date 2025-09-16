@@ -24,6 +24,9 @@ return new class extends Migration
 
             $table->decimal('price', 15, 2)->default(0);
 
+            //Unique
+            $table->unique(['gamma_office_id', 'extra_id'], 'gamma_extra_unique');
+
             // Audit fields
             $table->timestamps();
             $table->auditStamps();
