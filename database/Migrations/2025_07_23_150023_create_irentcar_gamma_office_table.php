@@ -25,6 +25,12 @@ return new class extends Migration
             $table->integer('quantity')->default(0)->unsigned();
             $table->decimal('price', 15, 2)->default(0);
 
+            $table->decimal('tax', 15, 2)->default(0);
+            $table->tinyInteger('status_id')->default(1)->unsigned();
+
+            //Unique
+            $table->unique(['office_id', 'gamma_id'], 'gamma_office_unique');
+
             // Audit fields
             $table->timestamps();
             $table->auditStamps();
