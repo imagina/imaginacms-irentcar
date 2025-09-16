@@ -40,12 +40,16 @@ return new class extends Migration
             $table->json('extras_data')->nullable();
 
             $table->decimal('gamma_office_price', 15, 2)->default(0);
+            $table->decimal('gamma_office_tax', 15, 2)->default(0);
             $table->decimal('gamma_office_extra_total_price', 15, 2)->default(0);
+            $table->smallInteger('rental_days')->default(0)->unsigned();
             $table->decimal('total_price', 15, 2)->default(0);
 
             $table->tinyInteger('status_id')->default(1)->unsigned();
 
             $table->json('options')->nullable();
+
+
 
             // Audit fields
             $table->timestamps();
