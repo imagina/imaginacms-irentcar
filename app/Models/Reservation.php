@@ -79,8 +79,7 @@ class Reservation extends CoreModel
     'status',
     'gamma_office_extra_total_price_conversions',
     'gamma_office_price_conversions',
-    'total_price_conversions',
-    'gamma_office_tax_amount'
+    'total_price_conversions'
   ];
 
   public function pickupOffice()
