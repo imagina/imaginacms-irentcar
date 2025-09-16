@@ -258,7 +258,7 @@ return [
             'title' => 'irentcar::reservations.edit.title',
             'description' => 'irentcar::reservations.edit.description',
             'onlyFor' => [],
-            'defaultAccess' => []
+            'defaultAccess' => ['user']
         ],
         'destroy' => [
             'title' => 'irentcar::reservations.destroy.title',
