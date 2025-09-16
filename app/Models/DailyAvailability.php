@@ -4,6 +4,9 @@ namespace Modules\Irentcar\Models;
 
 use Imagina\Icore\Models\CoreModel;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Modules\Irentcar\Support\PriceHelper;
+
 class DailyAvailability extends CoreModel
 {
 
@@ -35,11 +38,22 @@ class DailyAvailability extends CoreModel
     'reserved_quantity'
   ];
 
+  protected $appends = [
+    'price_conversions'
+  ];
+
   protected function casts(): array
   {
     return [
       'price' => 'int'
     ];
+  }
+
+  public function priceConversions(): Attribute
+  {
+    return Attribute::get(function () {
+      return PriceHelper::getPriceConversions($this->price);
+    });
   }
 
   /*

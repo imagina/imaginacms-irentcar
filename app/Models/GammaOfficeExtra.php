@@ -4,6 +4,9 @@ namespace Modules\Irentcar\Models;
 
 use Imagina\Icore\Models\CoreModel;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Modules\Irentcar\Support\PriceHelper;
+
 class GammaOfficeExtra extends CoreModel
 {
 
@@ -31,11 +34,22 @@ class GammaOfficeExtra extends CoreModel
     'price'
   ];
 
+  protected $appends = [
+    'price_conversions'
+  ];
+
   protected function casts(): array
   {
     return [
       'price' => 'int'
     ];
+  }
+
+  public function priceConversions(): Attribute
+  {
+    return Attribute::get(function () {
+      return PriceHelper::getPriceConversions($this->price);
+    });
   }
 
   public function extra()
