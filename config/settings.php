@@ -126,13 +126,13 @@ return [
     ],
     'userEmailsToNotify' => [
         'name' => 'irentcar::userEmailsToNotify',
-        'default' => null,
+        'default' => [],
         'dynamicField' => [
             'type' => 'select',
             'columns' => 'col-12 col-md-6',
             'loadOptions' => [
                 'apiRoute' => 'apiRoutes.quser.users',
-                'select' => ['label' => 'email', 'id' => 'id'],
+                'select' => ['label' => 'email', 'id' => 'email'],
             ],
             'props' => [
                 'label' => 'irentcar::settings.userEmailsToNotify',
