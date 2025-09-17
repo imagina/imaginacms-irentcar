@@ -20,7 +20,11 @@ class InitialGammasSeeder extends Seeder
         [
           'title' => 'Gama ZX',
           'summary' => 'Kia Picanto o Similar',
-          'description' => ' Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+          'description' => '<p><strong>Tambi&eacute;n incluye</strong></p>
+            <p><span aria-hidden="true" class="fa-solid fa-circle"></span>&nbsp;Airbag</p>
+            <p><span aria-hidden="true" class="fa-solid fa-radio"></span>&nbsp;Radio est&eacute;reo AM/PM</p>
+            <p><span aria-hidden="true" class="fa-solid fa-fan"></span>&nbsp;Aire acondicionado</p>
+            ',
           'passengers_number' => 3,
           'luggages' => 1,
           'doors' => 2,
@@ -28,7 +32,11 @@ class InitialGammasSeeder extends Seeder
         [
           'title' => 'Gama AB',
           'summary' => 'Fiat Pulse o Similar',
-          'description' => ' Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+          'description' => '<p><strong>Tambi&eacute;n incluye</strong></p>
+            <p><span aria-hidden="true" class="fa-solid fa-circle"></span>&nbsp;Airbag</p>
+            <p><span aria-hidden="true" class="fa-solid fa-radio"></span>&nbsp;Radio est&eacute;reo AM/PM</p>
+            <p><span aria-hidden="true" class="fa-solid fa-fan"></span>&nbsp;Aire acondicionado</p>
+            ',
           'passengers_number' => 5,
           'luggages' => 1,
           'doors' => 4,
