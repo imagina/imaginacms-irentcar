@@ -170,6 +170,7 @@ class ReservationService
 
     /**
      * Get total price from gamma Office price + extras total price
+     * Get Rental Days
      */
     private function getTotalPrice(&$data)
     {
@@ -179,13 +180,15 @@ class ReservationService
         if (isset($data['gamma_office_extra_total_price']))
             $totalPrice += $data['gamma_office_extra_total_price'];
 
-        //Only dates
-        $pickup = Carbon::parse($data['pickup_date'])->startOfDay();
-        $dropoff = Carbon::parse($data['dropoff_date'])->startOfDay();
+        $pickup = Carbon::parse($data['pickup_date']);
+        $dropoff = Carbon::parse($data['dropoff_date']);
 
-        //Extra Validation
         if ($dropoff->greaterThan($pickup)) {
-            $days = $pickup->diffInDays($dropoff) + 1; //No es solo la diferencia, tomar en cuenta todos los dias
+            $hours = $pickup->diffInHours($dropoff);
+            //Redondea hacia arriba apenas exist aun decimal
+            $days = ceil($hours / 24);
+            // Siempre sumar 1 día adicional por el día de pickup
+            $days += 1;
         } else {
             throw new Exception(itrans('irentcar::reservation.validation.dropoff date must be greater than pickup date'), Response::HTTP_CONFLICT);
         }
