@@ -19,8 +19,6 @@ class CreateOfficeRequest extends CoreFormRequest
             'locatable.province_id' => 'required',
             'locatable.city_id' => 'required',
             'locatable.address' => 'required',
-            'locatable.lat' => 'required',
-            'locatable.lng' => 'required',
         ];
     }
 
