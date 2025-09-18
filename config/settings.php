@@ -130,14 +130,12 @@ return [
         'dynamicField' => [
             'type' => 'select',
             'columns' => 'col-12 col-md-6',
-            'loadOptions' => [
-                'apiRoute' => 'apiRoutes.quser.users',
-                'select' => ['label' => 'email', 'id' => 'email'],
-            ],
             'props' => [
                 'label' => 'irentcar::settings.userEmailsToNotify',
                 'multiple' => true,
-                'clearable' => true,
+                'useInput' => true,
+                'useChips' => true,
+                'newValueMode' => 'add-unique',
             ],
         ]
     ],
