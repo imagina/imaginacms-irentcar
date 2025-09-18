@@ -145,7 +145,7 @@ class GammaService
             ->groupBy('gamma_office_id')
             ->map(function ($items) {
                 return $items->keyBy(function ($item) {
-                    return Carbon::parse($item->date)->toDateString();
+                    return Carbon::parse($item->available_date)->toDateString();
                 });
             });
     }
