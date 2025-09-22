@@ -28,5 +28,6 @@ return [
     'conditions and terms' => 'Términos y condiciones del contrato de alquiler',
     'extras total price' => 'Precio Total de los extras',
     'rental days' => 'Dias de Renta',
+    'extra information gamma' => 'Additional information',
 
 ];
