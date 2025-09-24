@@ -29,4 +29,5 @@ return [
     'extras total price' => 'Precio Total de los extras',
     'rental days' => 'Dias de Renta',
     'extra information gamma' => 'Información adicional',
+    'number flight'=> 'Número de vuelo'
 ];

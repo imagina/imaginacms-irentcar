@@ -50,5 +50,14 @@
   <h3 style="font-size: 16px; margin: 15px 0 0; color: #212529;">{{itrans('irentcar::email.dropoff office')}}</h3>
   <div style="margin-bottom: 5px; color: #555; font-size: 14px;">{{ $reservation->dropoffOffice->title }}</div>
   
+  @if(!empty($reservation->options["flyNumber"]))
+    <h3 style="font-size: 16px; margin: 0; color: #212529;">
+      {{itrans('irentcar::email.number flight')}}
+    </h3>
+    <div style="margin-bottom: 5px; color: #555; font-size: 14px;">
+      {{ $reservation->options["flyNumber"] }}
+    </div>
+  @endif
+  
   <hr style="background-color: transparent;border: 0.5px solid #e2e2e2; margin:40px 0;">
 </div>
