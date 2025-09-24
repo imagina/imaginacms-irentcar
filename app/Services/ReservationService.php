@@ -77,7 +77,7 @@ class ReservationService
         $age = $user->age ?? null;
 
         //Validation Aage
-        if (is_null($age) || $age <= $ageSetting) {
+        if (is_null($age) || $age < $ageSetting) {
             throw new \Exception(
                 itrans('irentcar::reservation.validation.minimunUserAge', ['age' => $ageSetting]),
                 Response::HTTP_UNPROCESSABLE_ENTITY
