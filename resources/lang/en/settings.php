@@ -15,5 +15,6 @@ return [
     'extraInformation' => 'EXTRA INFORMATION',
     'showInCurrencies' => [
         'title' => 'Mostrar conversion de precio en',
-    ]
+    ],
+    'reservationPrefix' => 'Reservation Prefix'
 ];

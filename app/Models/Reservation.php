@@ -79,7 +79,8 @@ class Reservation extends CoreModel
     'status',
     'gamma_office_extra_total_price_conversions',
     'gamma_office_price_conversions',
-    'total_price_conversions'
+    'total_price_conversions',
+    'with_prefix'
   ];
 
   public function pickupOffice()
@@ -167,6 +168,13 @@ class Reservation extends CoreModel
       }
 
       return 0;
+    });
+  }
+
+  public function withPrefix(): Attribute
+  {
+    return Attribute::get(function () {
+      return (setting('irentcar::reservationPrefix', '') ?? '') . '-' . $this->id;
     });
   }
 

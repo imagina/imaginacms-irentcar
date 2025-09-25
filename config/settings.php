@@ -166,6 +166,18 @@ return [
             ]
         ]
     ],
+    'reservationPrefix' => [
+        'default' => null,
+        'name' => 'irentcar::reservationPrefix',
+        "onlySuperAdmin" => true,
+        'dynamicField' => [
+            'type' => 'input',
+            'colClass' => 'col-12 col-md-6',
+            'props' => [
+                'label' => 'irentcar::settings.reservationPrefix',
+            ]
+        ]
+    ],
     'extraInformation' => [
         'name' => 'irentcar::extraInformation',
         'default' => null,
@@ -177,5 +189,7 @@ return [
             ],
         ]
     ],
+
+
 
 ];
