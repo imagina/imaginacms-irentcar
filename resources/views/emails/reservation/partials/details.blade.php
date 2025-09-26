@@ -6,8 +6,8 @@
   <p style="margin: 0; color: #212529; font-size:22px">
     <strong>{{itrans('irentcar::email.confirmation number')}}:</strong>
   </p>
-  <div style="font-size:22px; color: #212529;font-weight: 800;">
-    <em>{{ $reservation->id}}</em>
+  <div style="font-size:22px; color: #212529;font-weight: 800;margin-top:15px;">
+    <em>{{ $reservation->with_prefix}}</em>
   </div>
   
   {{--ONLY CREATED--}}
