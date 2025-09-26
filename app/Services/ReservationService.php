@@ -188,7 +188,7 @@ class ReservationService
             //Redondea hacia arriba apenas exist aun decimal
             $days = ceil($hours / 24);
             // Siempre sumar 1 día adicional por el día de pickup
-            $days += 1;
+            //$days += 1;
         } else {
             throw new Exception(itrans('irentcar::reservation.validation.dropoff date must be greater than pickup date'), Response::HTTP_CONFLICT);
         }
