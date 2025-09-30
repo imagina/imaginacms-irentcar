@@ -57,9 +57,9 @@ class GammaService
         $minDropoff = Carbon::parse($response['reservationDates']['minDropoffDate']);
         $maxDropoff = Carbon::parse($response['reservationDates']['maxDropoffDate']);
 
-        if ($dropoffDate->isBefore($minDropoff->startOfDay()) || $dropoffDate->isAfter($maxDropoff->endOfDay())) {
+        /*if ($dropoffDate->isBefore($minDropoff->startOfDay()) || $dropoffDate->isAfter($maxDropoff->endOfDay())) {
             throw new \Exception(itrans('irentcar::reservation.validation.dropoffDateNotValid'), Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
+        }*/
 
         //Validar que la Hora de Pickup esté disponible
         $pickupDateTime = Carbon::parse($data['pickup_date']);
