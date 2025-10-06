@@ -46,9 +46,9 @@ class ValidationDateService
         }
 
         //Tiempo minimo en dias de la Reserva
-        $minDropoffDays = setting("irentcar::minDropoffDays");
+        $minDropoffDays = (int)setting("irentcar::minDropoffDays");
         //Tiempo maximo en dias de la Reserva
-        $maxDropoffDays = setting("irentcar::maxDropoffDays");
+        $maxDropoffDays = (int)setting("irentcar::maxDropoffDays");
 
         //Add days
         $minDateCarbon = $pickupDateCarbon->copy()->addDays($minDropoffDays);
@@ -68,8 +68,8 @@ class ValidationDateService
 
     public function getPickupSlots(Carbon $pickupDateCarbon, Carbon $now): array
     {
-        $minAdvanceMinutes = setting("irentcar::minAdvanceMinutes");
-        $slotsIntervalMinutes = setting("irentcar::slotsInvervalMinutes");
+        $minAdvanceMinutes = (int)setting("irentcar::minAdvanceMinutes");
+        $slotsIntervalMinutes = (int)setting("irentcar::slotsInvervalMinutes");
 
         $slotRangeStart = setting("irentcar::slotRangeStart"); // Ej: "08:00"
         $slotRangeEnd = setting("irentcar::slotRangeEnd");     // Ej: "20:00"
