@@ -39,6 +39,7 @@ class Gamma extends CoreModel
     'fuel_type_id',
     'vehicle_type_id',
     'next_gamma_id',
+    'status_id',
     'options'
   ];
 
@@ -52,7 +53,8 @@ class Gamma extends CoreModel
   protected $appends = [
     'transmission_type',
     'fuel_type',
-    'vehicle_type'
+    'vehicle_type',
+    'status'
   ];
 
   public array $mediaFillable = [
@@ -100,6 +102,17 @@ class Gamma extends CoreModel
     return Attribute::get(function () {
       $vehiculeType = new VehicleType();
       return $vehiculeType->show($this->vehicle_type_id);
+    });
+  }
+
+  /**
+   * Attribute Static Class
+   */
+  public function status(): Attribute
+  {
+    return Attribute::get(function () {
+      $status = new Status();
+      return $status->show($this->status_id);
     });
   }
 
