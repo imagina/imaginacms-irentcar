@@ -15,10 +15,10 @@ class CreateOfficeRequest extends CoreFormRequest
             'title' => 'required|min:3|max:255',
             'description' => 'nullable|min:5|max:3000',
             'status_id' => 'nullable|integer|in:' . implode(',', array_keys((new Status())->lists())),
-            'locatable.country_id' => 'required',
-            'locatable.province_id' => 'required',
-            'locatable.city_id' => 'required',
-            'locatable.address' => 'required',
+            'locatable.*.country_id' => 'required',
+            'locatable.*.province_id' => 'required',
+            'locatable.*.city_id' => 'required',
+            'locatable.*.address' => 'required',
         ];
     }
 
@@ -39,12 +39,12 @@ class CreateOfficeRequest extends CoreFormRequest
             'title.min' => itrans('irentcar::common.messages.titleMin'),
             'description.min' => itrans('irentcar::common.messages.descriptionMin'),
             'status_id.in' => itrans('irentcar::common.messages.statusIn'),
-            'locatable.country_id.required' => itrans('irentcar::office.messages.locatable.countryIdIsRequired'),
-            'locatable.province_id.required' => itrans('irentcar::office.messages.locatable.provinceIdIsRequired'),
-            'locatable.city_id.required' => itrans('irentcar::office.messages.locatable.cityIdIsRequired'),
-            'locatable.address.required' => itrans('irentcar::office.messages.locatable.addressIdIsRequired'),
-            'locatable.lat.required' => itrans('irentcar::office.messages.locatable.latIdIsRequired'),
-            'locatable.lng.required' => itrans('irentcar::office.messages.locatable.lngIdIsRequired'),
+            'locatable.*.country_id.required' => itrans('irentcar::office.messages.locatable.countryIdIsRequired'),
+            'locatable.*.province_id.required' => itrans('irentcar::office.messages.locatable.provinceIdIsRequired'),
+            'locatable.*.city_id.required' => itrans('irentcar::office.messages.locatable.cityIdIsRequired'),
+            'locatable.*.address.required' => itrans('irentcar::office.messages.locatable.addressIdIsRequired'),
+            'locatable.*.lat.required' => itrans('irentcar::office.messages.locatable.latIdIsRequired'),
+            'locatable.*.lng.required' => itrans('irentcar::office.messages.locatable.lngIdIsRequired'),
         ];
     }
 
