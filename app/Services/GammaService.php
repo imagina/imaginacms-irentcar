@@ -107,8 +107,11 @@ class GammaService
                     $gamma->extras = $gammaOffice->extras;
                 } */
                 //$availableGammas[] = $gamma;
-
                 //$availableGammas[] = $gammaOffice->gamma;
+
+                $gammaFirstDaily = $dailyAvailabilities[$gammaOffice->id][$startDate->toDateString()] ?? null;
+                if ($gammaFirstDaily && $gammaFirstDaily->price) $gammaOffice->price = $gammaFirstDaily->price;
+
                 $availableGammas[] = $gammaOffice;
             }
         }
