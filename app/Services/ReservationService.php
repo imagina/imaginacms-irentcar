@@ -254,7 +254,7 @@ class ReservationService
                     'available_date'     => $dateKey,
                     'reserved_quantity'  => 1,
                     'reason'             => null,
-                    'price'              => null
+                    'price'              => $gammaOffice->price
                 ]);
             }
         }
