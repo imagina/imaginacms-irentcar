@@ -47,7 +47,9 @@ class ReservationService
     public function getDataToCreate($data, $isPreview = false)
     {
 
-        $this->validationsUser($data);
+        if (!$isPreview) {
+            $this->validationsUser($data);
+        }
         $this->getGammaData($data);
         $this->getPriceFromGammaOffice($data);
         $this->getExtrasData($data);

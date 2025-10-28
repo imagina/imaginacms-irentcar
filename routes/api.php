@@ -124,6 +124,7 @@ Route::prefix('/irentcar/v1')->group(function () {
                 'method' => 'post', // get,post,put....
                 'path' => '/preview', // Route Path
                 'uses' => 'getPreviewReservation', //Name of the controller method to use
+                'middleware' => []
             ]
         ]
     ]);
