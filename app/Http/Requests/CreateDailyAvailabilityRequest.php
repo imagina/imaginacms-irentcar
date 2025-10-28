@@ -20,6 +20,11 @@ class CreateDailyAvailabilityRequest extends CoreFormRequest
                 Rule::unique('irentcar__daily_availabilities')
                     ->where(fn($query) => $query->where('gamma_office_id', request('attributes.gamma_office_id'))),
             ],
+            'end_date' => [
+                'nullable',
+                'date_format:Y-m-d',
+                'after:available_date',
+            ],
             'quantity' => 'nullable|integer',
             'reason' => 'nullable|string|max:3000',
 
@@ -44,6 +49,7 @@ class CreateDailyAvailabilityRequest extends CoreFormRequest
             'available_date.required' => itrans('irentcar::dailyavailability.messages.dateIsRequired'),
             'available_date.date_format' => itrans('irentcar::dailyavailability.messages.dateFormat'),
             'available_date.unique' => itrans('irentcar::dailyavailability.messages.dateAlreadyExistsForOffice'),
+            'end_date.after' => itrans('irentcar::dailyavailability.messages.endDateAfterAvailableDate'),
         ];
     }
 
