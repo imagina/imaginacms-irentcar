@@ -77,14 +77,14 @@ Route::prefix('/irentcar/v1')->group(function () {
         'controller' => DailyAvailabilityApiController::class,
         'permission' => 'irentcar.dailyavailabilities',
         'middleware' => ['index' => [], 'show' => []],
-        // 'customRoutes' => [ // Include custom routes if needed
-        //  [
-        //    'method' => 'post', // get,post,put....
-        //    'path' => '/some-path', // Route Path
-        //    'uses' => 'ControllerMethodName', //Name of the controller method to use
-        //    'middleware' => [] // if not set up middleware, auth:api will be the default
-        //  ]
-        // ]
+        'customRoutes' => [ // Include custom routes if needed
+            [
+                'method' => 'post', // get,post,put....
+                'path' => '/update-or-create', // Route Path
+                'uses' => 'updateOrCreate', //Name of the controller method to use
+                'middleware' => [] // if not set up middleware, auth:api will be the default
+            ]
+        ]
     ]);
     Route::apiCrud([
         'module' => 'irentcar',

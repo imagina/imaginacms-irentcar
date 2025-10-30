@@ -17,8 +17,8 @@ class CreateDailyAvailabilityRequest extends CoreFormRequest
             'available_date' => [
                 'required',
                 'date_format:Y-m-d',
-                Rule::unique('irentcar__daily_availabilities')
-                    ->where(fn($query) => $query->where('gamma_office_id', request('attributes.gamma_office_id'))),
+                /*  Rule::unique('irentcar__daily_availabilities')
+                    ->where(fn($query) => $query->where('gamma_office_id', request('attributes.gamma_office_id'))), */
             ],
             'end_date' => [
                 'nullable',
