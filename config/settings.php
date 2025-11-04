@@ -71,7 +71,7 @@ return [
         'name' => 'irentcar::slotRangeStart',
         "onlySuperAdmin" => true,
         'dynamicField' => [
-            'type' => 'input',
+            'type' => 'hour',
             'colClass' => 'col-12 col-md-6',
             'props' => [
                 'label' => 'irentcar::settings.slotRangeStart'
@@ -83,7 +83,7 @@ return [
         'name' => 'irentcar::slotRangeEnd',
         "onlySuperAdmin" => true,
         'dynamicField' => [
-            'type' => 'input',
+            'type' => 'hour',
             'colClass' => 'col-12 col-md-6',
             'props' => [
                 'label' => 'irentcar::settings.slotRangeEnd'
